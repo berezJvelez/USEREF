@@ -1,24 +1,27 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 const Contador = () => {
-
-    const timer = useRef(0);
-
+    
     const [cont, setCont] = useState(0);
 
-    useEffect(() => {
-        timer.current = setInterval(() => setCont(cont => cont + 1), 1000)
-    }, []);
+    const Aumenta = ()=> {
+        setCont(cont+1)
+    }//Aumenta
 
-    const handleClick = () => {
-        clearInterval(timer.current);
-        timer.current = 0;
-    }
+    const Reiniciar = ()=> {
+        setCont(0)
+    }//Reiniciar
 
+    console.log(`Contador: ${cont}`)
     return <div>
-        <p>Cont: {cont}</p>
-        <button onClick={handleClick}>PARAR!!</button>
+        <br />
+        <br />
+        <button onClick={()=> Aumenta()} > Agrega uno </button>
+        <button onClick={()=> Reiniciar()} >Reiniciar</button>
+        <hr></hr><hr></hr>
+        <h1> Llevamos: {cont} </h1>
+        <hr></hr><hr></hr>      
     </div>
-}
+}//Contador
 
 export default Contador;

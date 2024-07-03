@@ -1,25 +1,27 @@
-import { useState, useRef } from "react";
+import { useRef, useState } from "react";
 
 const PulsaBotones = () => {
-
-    // const [cont, setCont] = useState(0);
-    const cont = useRef(0);
+    
+    const ref = useRef(0);
+    //const [cont, setCont] = useState(0);
 
     const handleClick = (incrementa) => {
-        if (incrementa) {
-            cont.current++;
-        } else {
-            cont.current--;
-        }
-        console.log(`Contador: ${cont.current}`);
-    }
+        if (incrementa){
+            ref.current++;
+        }else {
+            ref.current--;
+        }//if+-
 
-    console.log('RENDER!!');
+        console.log(`Ref: ${ref.current}`);
+    }//handleClick
+
+    console.log('~~~~~~~~~~~~~~~~~~RENDER~~~~~~~~~~~~~~~~~')
 
     return <div>
         <button onClick={() => handleClick(false)}>Decrementa</button>
         <button onClick={() => handleClick(true)}>Incrementa</button>
     </div>
-}
+    
+}//PulsaBotones
 
 export default PulsaBotones;
