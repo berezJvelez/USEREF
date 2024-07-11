@@ -1,45 +1,56 @@
 import { useEffect, useRef, useState } from "react"
 
-const Contador = ()=> {
+const Temporizador = ()=> {
     
-    const play = useRef(0);
+    const standBy = useRef();
     const timer = useRef(0);
     const [cont, setCont] = useState(0);
+    const continua = 0;
 
     useEffect( ()=> {
         timer.current = setInterval( ()=>
             setCont(cont => cont + 1), 1000
         )//setInterval
-        console.log('render')
+        console.log('useEffect')
     },
-    []
+    [continua]
     );//useEffect
 
     const detener = () => {
         clearInterval(timer.current);
         timer.current = 0;
-    }//HandlerClick
+        console.log(`Timer finalizado en: ${cont} segundos`)
+        setCont(count => 'Finalizado')
+    }//detener
+
+    const reiniciar = () => {
+        setCont (count => 0)
+    }//reiniciar
 
     const continuar = () => {
-        timer.current = 0;
-        play.current = 1;
-        console.log(`timer: ${timer.current}`)
-        console.log(`play: ${play.current}`)
-    }//HandlerClick
+        setCont(standBy.current + 1);
+        continua = 1 ;
+    }//reiniciar
 
-    const reiniciar = ()=> {
-        setCont(0)
-    }//Reiniciar
+    const pausa = () => {
+        setCont(count => 'Pausa')
+        standBy.current = cont;
+        console.log(`Contador se pausó en el segundo: ${standBy.current}`)
+    }//reiniciar
+
     
     return <div>
+        <hr />
         <p>Contador: {cont}</p>
-        <button onClick={detener}>Detener</button>
-        <button onClick={continuar}>Continuar</button>
         <br />
+        <button onClick={pausa} >Pausa</button>
+        <button onClick={continuar} >Continuar</button>
+        <br />
+        <br />
+        <button onClick={detener} id='detener'>Detener</button>
         <button onClick={reiniciar}>Reiniciar</button>
         <hr />
-        <p>timer.current: {timer.current} </p>
     </div>
-}//Contador
+}//Temporizador
 
-export default Contador;
+export default Temporizador;

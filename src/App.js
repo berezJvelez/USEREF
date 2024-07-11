@@ -11,9 +11,9 @@ function App() {
     <div className="App">
       {/*<PulsaBotones />*/} 
       {/*<Contador />*/}  
-      {/* <Timer /> */}
+      <Timer /> 
       {/* <AutoFocus /> */}
-      <MensajePrevio />
+      {/* <MensajePrevio />*/}
     </div>
   );
 }
